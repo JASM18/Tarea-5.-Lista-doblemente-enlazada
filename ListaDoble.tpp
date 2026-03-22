@@ -80,7 +80,7 @@ void ListaDoble<T>::AgregarFinal(T valor)
 template <typename T>
 void ListaDoble<T>::AgregarEnPos(T valor, int pos)
 {
-    if(pos < 0 || pos >= numElem) throw ListaIndice();
+    if(pos < 0 || pos > numElem) throw ListaIndice();
 
     if(pos == 0){
         AgregarInicio(valor);
@@ -163,19 +163,63 @@ void ListaDoble<T>::EliminarFinal()
 template <typename T>
 void ListaDoble<T>::EliminarEnPos(int pos)
 {
+    if (pos < 0 || pos >= numElem) throw ListaIndice();
 
+    if (EstaVacia()) throw ListaVacia();
+
+    if (pos == 0){
+        EliminarInicio();
+        return;
+    }
+
+    if (pos == numElem-1){
+        EliminarFinal();
+        return;
+    }
+
+    Elemento *visitado = primero->siguiente;
+
+    for (int i = 1; i < pos; i++){
+        visitado = visitado->siguiente;
+    }
+
+    visitado->anterior->siguiente = visitado->siguiente;
+    visitado->siguiente->anterior = visitado->anterior;
+
+    numElem--;
+
+    delete visitado;
 }
+
 
 template <typename T>
 bool ListaDoble<T>::BuscarValor(T valor) const
 {
+    Elemento *busqueda = primero;
 
+    for (int i = 0; i < numElem; i++){
+        if (busqueda->valor == valor){
+            return true;
+        }
+
+        busqueda = busqueda->siguiente;
+    }
+
+    return false;
 }
 
 template <typename T>
 int ListaDoble<T>::BuscarPosicion(T valor) const
 {
+    Elemento *visitado = primero;
 
+    for (int i = 0; i < numElem; i++){
+        if (visitado->valor == valor){
+            return i;
+        }
+        visitado = visitado->siguiente;
+    }
+    return -1;
 }
 
 template <typename T>
@@ -220,13 +264,28 @@ int ListaDoble<T>::ObtenerNumElem() const
 template <typename T>
 void ListaDoble<T>::Vaciar()
 {
-
+    while (!EstaVacia()){
+        EliminarInicio();
+    }
 }
 
 template <typename T>
 void ListaDoble<T>::Imprimir() const
 {
+    if(EstaVacia()){
+        std::cout << "[ ]" << std::endl;
+        return;
+    }
 
+    Elemento *visitado = primero;
+    std::cout << "[ ";
+
+    while(visitado != nullptr){
+        std::cout << visitado->valor << ", ";
+        visitado = visitado->siguiente;
+    }
+
+    if(!EstaVacia()) std::cout << "\b\b ]";
 }
 
 template <typename T>
