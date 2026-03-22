@@ -3,4 +3,6 @@ project(Tarea5_ListaDoble)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Tarea5_ListaDoble main.cpp)
+add_executable(Tarea5_ListaDoble main.cpp
+        ListaDoble.hpp
+        ListaDoble.tpp)

@@ -2,16 +2,16 @@
 #define LISTADOBLE_HPP_INCLUDED
 
 template <typename T>
-class ListaDoble {
+class Lista {
 public:
 
-    ListaDoble();
+    Lista();
 
-    ~ListaDoble();
+    ~Lista();
 
-    ListaDoble(const ListaDoble& lista);
+    Lista(const Lista& lista);
 
-    ListaDoble& operator=(const ListaDoble& lista);
+    Lista& operator=(const Lista& lista);
 
     void AgregarInicio(T valor);
 

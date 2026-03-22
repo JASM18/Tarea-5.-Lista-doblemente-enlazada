@@ -5,7 +5,7 @@
 //***********************************
 
 template <typename T>
-ListaDoble<T>::ListaDoble()
+Lista<T>::Lista()
 {
     numElem = 0;
     primero = nullptr;
@@ -15,7 +15,7 @@ ListaDoble<T>::ListaDoble()
 //***********************************
 
 template <typename T>
-ListaDoble<T>::~ListaDoble()
+Lista<T>::~Lista()
 {
     Vaciar();
 }
@@ -23,7 +23,7 @@ ListaDoble<T>::~ListaDoble()
 //***********************************
 
 template <typename T>
-ListaDoble<T>::ListaDoble(const ListaDoble& lista)
+Lista<T>::Lista(const Lista& lista)
 {
     numElem = 0;
     primero = nullptr;
@@ -34,7 +34,7 @@ ListaDoble<T>::ListaDoble(const ListaDoble& lista)
 //***********************************
 
 template <typename T>
-ListaDoble<T>& ListaDoble<T>::operator=(const ListaDoble& lista)
+Lista<T>& Lista<T>::operator=(const Lista& lista)
 {
     if (this == &lista) return *this; // handle self assignment
     //assignment operator
@@ -57,7 +57,7 @@ ListaDoble<T>& ListaDoble<T>::operator=(const ListaDoble& lista)
 //***********************************
 
 template <typename T>
-void ListaDoble<T>::AgregarInicio(T valor)
+void Lista<T>::AgregarInicio(T valor)
 {
     try{
         Elemento *nuevo = new Elemento(valor);
@@ -80,7 +80,7 @@ void ListaDoble<T>::AgregarInicio(T valor)
 //***********************************
 
 template <typename T>
-void ListaDoble<T>::AgregarFinal(T valor)
+void Lista<T>::AgregarFinal(T valor)
 {
     try{
         Elemento *nuevo = new Elemento(valor);
@@ -105,7 +105,7 @@ void ListaDoble<T>::AgregarFinal(T valor)
 //***********************************
 
 template <typename T>
-void ListaDoble<T>::AgregarEnPos(T valor, int pos)
+void Lista<T>::AgregarEnPos(T valor, int pos)
 {
     if(pos < 0 || pos > numElem) throw ListaIndice();
 
@@ -148,7 +148,7 @@ void ListaDoble<T>::AgregarEnPos(T valor, int pos)
 //***********************************
 
 template <typename T>
-void ListaDoble<T>::EliminarInicio()
+void Lista<T>::EliminarInicio()
 {
     if(EstaVacia()){
         throw ListaVacia();
@@ -172,7 +172,7 @@ void ListaDoble<T>::EliminarInicio()
 //***********************************
 
 template <typename T>
-void ListaDoble<T>::EliminarFinal()
+void Lista<T>::EliminarFinal()
 {
     if(EstaVacia()){
         throw ListaVacia();
@@ -196,7 +196,7 @@ void ListaDoble<T>::EliminarFinal()
 //***********************************
 
 template <typename T>
-void ListaDoble<T>::EliminarEnPos(int pos)
+void Lista<T>::EliminarEnPos(int pos)
 {
     if (pos < 0 || pos >= numElem) throw ListaIndice();
 
@@ -237,7 +237,7 @@ void ListaDoble<T>::EliminarEnPos(int pos)
 //***********************************
 
 template <typename T>
-bool ListaDoble<T>::BuscarValor(T valor) const
+bool Lista<T>::BuscarValor(T valor) const
 {
     Elemento *visitado = primero;
 
@@ -251,7 +251,7 @@ bool ListaDoble<T>::BuscarValor(T valor) const
 //***********************************
 
 template <typename T>
-int ListaDoble<T>::BuscarPosicion(T valor) const
+int Lista<T>::BuscarPosicion(T valor) const
 {
     Elemento *visitado = primero;
 
@@ -268,7 +268,7 @@ int ListaDoble<T>::BuscarPosicion(T valor) const
 //***********************************
 
 template <typename T>
-bool ListaDoble<T>::EstaVacia() const
+bool Lista<T>::EstaVacia() const
 {
     if (numElem == 0){
         return true;
@@ -279,7 +279,7 @@ bool ListaDoble<T>::EstaVacia() const
 //***********************************
 
 template <typename T>
-T ListaDoble<T>::ObtenerPrimero() const
+T Lista<T>::ObtenerPrimero() const
 {
     if (EstaVacia()) throw ListaVacia();
 
@@ -289,7 +289,7 @@ T ListaDoble<T>::ObtenerPrimero() const
 //***********************************
 
 template <typename T>
-T ListaDoble<T>::ObtenerUltimo() const
+T Lista<T>::ObtenerUltimo() const
 {
     if (EstaVacia()) throw ListaVacia();
     return ultimo->valor;
@@ -298,7 +298,7 @@ T ListaDoble<T>::ObtenerUltimo() const
 //***********************************
 
 template <typename T>
-T ListaDoble<T>::ObtenerEnPos(int pos) const
+T Lista<T>::ObtenerEnPos(int pos) const
 {
     return (*this)[pos];
 }
@@ -306,7 +306,7 @@ T ListaDoble<T>::ObtenerEnPos(int pos) const
 //***********************************
 
 template <typename T>
-void ListaDoble<T>::ModificarEnPos(T valor, int pos)
+void Lista<T>::ModificarEnPos(T valor, int pos)
 {
     (*this)[pos] = valor;
 }
@@ -314,7 +314,7 @@ void ListaDoble<T>::ModificarEnPos(T valor, int pos)
 //***********************************
 
 template <typename T>
-int ListaDoble<T>::ObtenerNumElem() const
+int Lista<T>::ObtenerNumElem() const
 {
     return numElem;
 }
@@ -322,7 +322,7 @@ int ListaDoble<T>::ObtenerNumElem() const
 //***********************************
 
 template <typename T>
-void ListaDoble<T>::Vaciar()
+void Lista<T>::Vaciar()
 {
     while (!EstaVacia()){
         EliminarInicio();
@@ -332,7 +332,7 @@ void ListaDoble<T>::Vaciar()
 //***********************************
 
 template <typename T>
-void ListaDoble<T>::Imprimir() const
+void Lista<T>::Imprimir() const
 {
     if(EstaVacia()){
         std::cout << "[ ]" << std::endl;
@@ -353,7 +353,7 @@ void ListaDoble<T>::Imprimir() const
 //***********************************
 
 template <typename T>
-void ListaDoble<T>::ImprimirReversa() const
+void Lista<T>::ImprimirReversa() const
 {
     if(EstaVacia()){
         std::cout << "[ ]" << std::endl;
@@ -376,7 +376,7 @@ void ListaDoble<T>::ImprimirReversa() const
 //***********************************
 
 template <typename T>
-std::ostream& operator<<(std::ostream& salida, const ListaDoble<T>& lista)
+std::ostream& operator<<(std::ostream& salida, const Lista<T>& lista)
 {
     lista.Imprimir();
     return salida;
@@ -385,7 +385,7 @@ std::ostream& operator<<(std::ostream& salida, const ListaDoble<T>& lista)
 
 
 template <typename T>
-T &ListaDoble<T>::operator[](int pos)
+T &Lista<T>::operator[](int pos)
 {
     if(pos < 0 || pos >= numElem) throw ListaIndice();
 
@@ -407,7 +407,7 @@ T &ListaDoble<T>::operator[](int pos)
 }
 
 template <typename T>
-T ListaDoble<T>::operator[](int pos) const
+T Lista<T>::operator[](int pos) const
 {
     if (pos < 0 || pos >= numElem) throw ListaIndice();
     if (EstaVacia()) throw ListaVacia();
@@ -442,29 +442,29 @@ T ListaDoble<T>::operator[](int pos) const
 //***********************************
 
 template <typename T>
-ListaDoble<T>::Elemento::Elemento(T v, Elemento *ant /*=nullptr*/, Elemento *sig /*=nullptr*/) : valor(v), anterior(ant), siguiente(sig) {}
+Lista<T>::Elemento::Elemento(T v, Elemento *ant /*=nullptr*/, Elemento *sig /*=nullptr*/) : valor(v), anterior(ant), siguiente(sig) {}
 
 //***********************************
 // Implementaci�n de las clases excepciones
 //***********************************
 
 template <typename T>
-ListaDoble<T>::ListaVacia::ListaVacia() throw() {}
+Lista<T>::ListaVacia::ListaVacia() throw() {}
 
 //***********************************
 
 template <typename T>
-ListaDoble<T>::ListaNoMemoria::ListaNoMemoria() throw(){}
+Lista<T>::ListaNoMemoria::ListaNoMemoria() throw(){}
 
 //***********************************
 
 template <typename T>
-ListaDoble<T>::ListaIndice::ListaIndice() throw(){}
+Lista<T>::ListaIndice::ListaIndice() throw(){}
 
 //***********************************
 
 template <typename T>
-const char *ListaDoble<T>::ListaVacia::what() const throw()
+const char *Lista<T>::ListaVacia::what() const throw()
 {
     return "La Lista se encuentra vac\241a.";
 }
@@ -472,7 +472,7 @@ const char *ListaDoble<T>::ListaVacia::what() const throw()
 //***********************************
 
 template <typename T>
-const char *ListaDoble<T>::ListaNoMemoria::what() const throw()
+const char *Lista<T>::ListaNoMemoria::what() const throw()
 {
     return "No hay memoria disponible.";
 }
@@ -480,7 +480,7 @@ const char *ListaDoble<T>::ListaNoMemoria::what() const throw()
 //***********************************
 
 template <typename T>
-const char *ListaDoble<T>::ListaIndice::what() const throw()
+const char *Lista<T>::ListaIndice::what() const throw()
 {
     return "Indice fuera de rango.";
 }

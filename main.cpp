@@ -9,7 +9,7 @@ int main()
     cout << "Prueba" << endl;
 
     try{
-        ListaDoble<int> listita;
+        Lista<int> listita;
 
         cout << "Agregando elementos..." << endl;
 
@@ -21,6 +21,11 @@ int main()
         cout << "Modificando elementos con operator[]..." << endl;
         listita[2] = 67;
         cout << listita << endl;
+
+        cout << "\nObteniendo todos los indices por individual con operator[]..." << endl;
+        for (int i = 0 ; i < listita.ObtenerNumElem() ; ++i) {
+            cout << listita[i] << endl;
+        }
 
     }catch(const char* mensaje){
         cerr << "Error: " << mensaje << endl;
