@@ -6,10 +6,7 @@ using namespace std;
 
 int main()
 {
-
-    ListaDoble<int> miLista;
-
-    miLista.AgregarInicio(5); // <-- Aquí detonas la bomba
+    cout << "Prueba" << endl;
 
     return 0;
 }
