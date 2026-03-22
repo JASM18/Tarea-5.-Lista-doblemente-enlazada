@@ -47,6 +47,55 @@ public:
 
     void ImprimirReversa() const;
 
+
+    /**
+     * \brief Descripci&oacute;n de la clase/struct: Excepci&oacute;n lanzada cuando se intenta acceder o extraer de una cola vac&iacute;a.
+     */
+    class ListaVacia : public std::exception {
+    public:
+        /** \brief Constructor por default de la excepci&oacute;n ColaVacia.
+         */
+        ListaVacia() throw();
+
+        /** \brief Devuelve una descripci&oacute;n del error al intentar operar con una lista vac&iacute;a.
+         *
+         * \return Cadena de caracteres con el mensaje de error.
+         */
+        virtual const char *what() const throw();
+    };
+
+    /**
+    * \brief Descripci&oacute;n de la clase/struct: Excepci&oacute;n lanzada cuando ocurren fallos de reserva de memoria.
+    */
+    class ListaNoMemoria : public std::exception {
+    public:
+        /** \brief Constructor por defecto de la excepci&oacute;n ListaNoMemoria.
+         */
+        ListaNoMemoria() throw();
+
+        /** \brief Devuelve una descripci&oacute;n del error cuando no haya memoria disponible.
+         *
+         * \return Cadena de caracteres con el mensaje de error.
+         */
+        virtual const char *what() const throw();
+    };
+
+    /**
+    * \brief Descripci&oacute;n de la clase/struct: Excepci&oacute;n lanzada cuando el cliente intenta acceder a indices no disponibles
+    */
+    class ListaIndice : public std::exception {
+    public:
+        /** \brief Constructor por defecto de la excepci&oacute;n ListaNoMemoria.
+         */
+        ListaIndice() throw();
+
+        /** \brief Devuelve una descripci&oacute;n del error cuando el cliente intente acceder a indices no disponibles.
+         *
+         * \return Cadena de caracteres con el mensaje de error.
+         */
+        virtual const char *what() const throw();
+    };
+
 private:
     int numElem = 0;
 

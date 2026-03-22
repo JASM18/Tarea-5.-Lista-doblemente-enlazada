@@ -1,14 +1,14 @@
 # depslib dependency file v1.0
-1774037657 source:c:\users\axel\desktop\4to semestre\estructura de datos\tareas\tarea 5 - lista doblemente enlazada\main.cpp
+1774159479 source:c:\users\axel\desktop\4to semestre\estructura de datos\tareas\tarea 5 - lista doblemente enlazada\main.cpp
 	<iostream>
 	"ListaDoble.hpp"
 
 1773986326 source:e:\github\tarea 5 - listas doblemenente enlazadas\tarea-5.-lista-doblemente-enlazada\main.cpp
 	<iostream>
 
-1774037953 c:\users\axel\desktop\4to semestre\estructura de datos\tareas\tarea 5 - lista doblemente enlazada\listadoble.hpp
+1774160266 c:\users\axel\desktop\4to semestre\estructura de datos\tareas\tarea 5 - lista doblemente enlazada\listadoble.hpp
 	"ListaDoble.tpp"
 
-1774040861 c:\users\axel\desktop\4to semestre\estructura de datos\tareas\tarea 5 - lista doblemente enlazada\listadoble.tpp
+1774160724 c:\users\axel\desktop\4to semestre\estructura de datos\tareas\tarea 5 - lista doblemente enlazada\listadoble.tpp
 	<iostream>
 

@@ -46,8 +46,7 @@ void ListaDoble<T>::AgregarInicio(T valor)
 
         ++numElem;
     }catch(const std::bad_alloc&){
-        // EXCEPCION
-        std::cerr << "t ekibokastes prro :v";
+        throw ListaNoMemoria();
     }
 }
 
@@ -70,21 +69,20 @@ void ListaDoble<T>::AgregarFinal(T valor)
         numElem++;
 
     }catch(const std::bad_alloc&){
-        // EXCEPCION
-        std::cerr << "t ekibokastes prro :v";
+        throw ListaNoMemoria();
     }
 }
 
 template <typename T>
 void ListaDoble<T>::AgregarEnPos(T valor, int pos)
 {
-    if(pos < 0 || pos >= numElem) throw "s";
+    if(pos < 0 || pos >= numElem) throw ListaIndice();
 
     if(pos == 0){
-        AgregarAlInicio(valor);
+        AgregarInicio(valor);
 
     }else if (pos == numElem){
-        AgregarAlFinal(valor);
+        AgregarFinal(valor);
 
     }else{
         Elemento *visitado;
@@ -99,7 +97,7 @@ void ListaDoble<T>::AgregarEnPos(T valor, int pos)
             visitado = primero;
 
             for (int i = 0; i < pos; i++){
-                visitado = primero;
+                visitado = visitado->siguiente;
             }
         }
 
@@ -109,7 +107,7 @@ void ListaDoble<T>::AgregarEnPos(T valor, int pos)
             visitado->anterior = nuevo;
             numElem++;
         }catch(const std::bad_alloc&){
-
+            throw ListaNoMemoria();
         }
     }
 }
@@ -118,7 +116,7 @@ template <typename T>
 void ListaDoble<T>::EliminarInicio()
 {
     if(EstaVacia()){
-        // throw
+        throw ListaVacia();
     }
 
     Elemento *porBorrar = primero;
@@ -128,9 +126,8 @@ void ListaDoble<T>::EliminarInicio()
         ultimo = nullptr;
 
     }else{
-        primero->siguiente->anterior = nullptr;
         primero = primero->siguiente;
-        //porBorrar->siguiente = nullptr;
+        primero->anterior = nullptr;
     }
 
     delete porBorrar;
@@ -140,11 +137,23 @@ void ListaDoble<T>::EliminarInicio()
 template <typename T>
 void ListaDoble<T>::EliminarFinal()
 {
-    if (EstaVacia() ) throw "Valor fuera de rango.";
+    if(EstaVacia()){
+        throw ListaVacia();
+    }
 
-    ultimo = ultimo->anterior;
-    delete primero;
-    primero = nullptr;
+    Elemento *porBorrar = ultimo;
+
+    if(numElem == 1){
+        primero = nullptr;
+        ultimo = nullptr;
+
+    }else{
+        ultimo = ultimo->anterior;
+        ultimo->siguiente = nullptr;
+    }
+
+    delete porBorrar;
+    --numElem;
 }
 
 template <typename T>
@@ -229,3 +238,43 @@ void ListaDoble<T>::ImprimirReversa() const
 template <typename T>
 ListaDoble<T>::Elemento::Elemento(T v, Elemento *ant /*=nullptr*/, Elemento *sig /*=nullptr*/) : valor(v), anterior(ant), siguiente(sig) {}
 
+//***********************************
+// Implementación de la clase ListaVacia
+//***********************************
+
+template <typename T>
+ListaDoble<T>::ListaVacia::ListaVacia() throw() {}
+
+//***********************************
+
+template <typename T>
+ListaDoble<T>::ListaNoMemoria::ListaNoMemoria() throw(){}
+
+//***********************************
+
+template <typename T>
+ListaDoble<T>::ListaIndice::ListaIndice() throw(){}
+
+//***********************************
+
+template <typename T>
+const char *ListaDoble<T>::ListaVacia::what() const throw()
+{
+    return "La Lista se encuentra vac\241a.";
+}
+
+//***********************************
+
+template <typename T>
+const char *ListaDoble<T>::ListaNoMemoria::what() const throw()
+{
+    return "No hay memoria disponible.";
+}
+
+//***********************************
+
+template <typename T>
+const char *ListaDoble<T>::ListaIndice::what() const throw()
+{
+    return "Indice fuera de rango.";
+}
