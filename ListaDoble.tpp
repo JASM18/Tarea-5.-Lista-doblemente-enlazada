@@ -12,11 +12,15 @@ ListaDoble<T>::ListaDoble()
     ultimo = nullptr;
 }
 
+//***********************************
+
 template <typename T>
 ListaDoble<T>::~ListaDoble()
 {
     Vaciar();
 }
+
+//***********************************
 
 template <typename T>
 ListaDoble<T>::ListaDoble(const ListaDoble& lista)
@@ -27,11 +31,30 @@ ListaDoble<T>::ListaDoble(const ListaDoble& lista)
     *this = lista;
 }
 
+//***********************************
+
 template <typename T>
 ListaDoble<T>& ListaDoble<T>::operator=(const ListaDoble& lista)
 {
+    if (this == &lista) return *this; // handle self assignment
+    //assignment operator
 
+    Vaciar();
+
+    if (lista.EstaVacia()) {
+        return *this;
+    }
+
+    Elemento *visitado = lista.primero;
+    while (visitado != nullptr) {
+        AgregarFinal(visitado->valor);
+        visitado = visitado->siguiente;
+    }
+
+    return *this;
 }
+
+//***********************************
 
 template <typename T>
 void ListaDoble<T>::AgregarInicio(T valor)
@@ -53,6 +76,8 @@ void ListaDoble<T>::AgregarInicio(T valor)
         throw ListaNoMemoria();
     }
 }
+
+//***********************************
 
 template <typename T>
 void ListaDoble<T>::AgregarFinal(T valor)
@@ -77,44 +102,50 @@ void ListaDoble<T>::AgregarFinal(T valor)
     }
 }
 
+//***********************************
+
 template <typename T>
 void ListaDoble<T>::AgregarEnPos(T valor, int pos)
 {
     if(pos < 0 || pos > numElem) throw ListaIndice();
 
-    if(pos == 0){
+    if(pos == 0) {
         AgregarInicio(valor);
+        return;
+    }
 
-    }else if (pos == numElem){
+    if (pos == numElem) {
         AgregarFinal(valor);
+        return;
+    }
+
+    Elemento *visitado;
+    if (pos > numElem/2){
+        visitado = ultimo;
+
+        for (int i = numElem-1; i > pos; i--){
+            visitado = visitado->anterior;
+        }
 
     }else{
-        Elemento *visitado;
-        if (pos > numElem/2){
-            visitado = ultimo;
+        visitado = primero;
 
-            for (int i = numElem-1; i > pos; i--){
-                visitado = visitado->anterior;
-            }
-
-        }else{
-            visitado = primero;
-
-            for (int i = 0; i < pos; i++){
-                visitado = visitado->siguiente;
-            }
-        }
-
-        try{
-            Elemento *nuevo = new Elemento(valor, visitado->anterior, visitado);
-            visitado->anterior->siguiente = nuevo;
-            visitado->anterior = nuevo;
-            numElem++;
-        }catch(const std::bad_alloc&){
-            throw ListaNoMemoria();
+        for (int i = 0; i < pos; i++){
+            visitado = visitado->siguiente;
         }
     }
+
+    try{
+        Elemento *nuevo = new Elemento(valor, visitado->anterior, visitado);
+        visitado->anterior->siguiente = nuevo;
+        visitado->anterior = nuevo;
+        numElem++;
+    }catch(const std::bad_alloc&){
+        throw ListaNoMemoria();
+    }
 }
+
+//***********************************
 
 template <typename T>
 void ListaDoble<T>::EliminarInicio()
@@ -138,6 +169,8 @@ void ListaDoble<T>::EliminarInicio()
     --numElem;
 }
 
+//***********************************
+
 template <typename T>
 void ListaDoble<T>::EliminarFinal()
 {
@@ -160,6 +193,8 @@ void ListaDoble<T>::EliminarFinal()
     --numElem;
 }
 
+//***********************************
+
 template <typename T>
 void ListaDoble<T>::EliminarEnPos(int pos)
 {
@@ -177,50 +212,60 @@ void ListaDoble<T>::EliminarEnPos(int pos)
         return;
     }
 
-    Elemento *visitado = primero->siguiente;
+    Elemento *visitado;
 
-    for (int i = 1; i < pos; i++){
-        visitado = visitado->siguiente;
+    if (pos > numElem / 2){
+        visitado = ultimo;
+        for (int i = numElem - 1; i > pos; i--){
+            visitado = visitado->anterior;
+        }
+    }else{
+        visitado = primero;
+        for (int i = 0; i < pos; i++){
+            visitado = visitado->siguiente;
+        }
     }
 
     visitado->anterior->siguiente = visitado->siguiente;
     visitado->siguiente->anterior = visitado->anterior;
 
-    numElem--;
+    --numElem;
 
     delete visitado;
 }
 
+//***********************************
 
 template <typename T>
 bool ListaDoble<T>::BuscarValor(T valor) const
 {
-    Elemento *busqueda = primero;
+    Elemento *visitado = primero;
 
-    for (int i = 0; i < numElem; i++){
-        if (busqueda->valor == valor){
-            return true;
-        }
-
-        busqueda = busqueda->siguiente;
+    while (visitado !=nullptr && visitado->valor != valor){
+        visitado = visitado->siguiente;
     }
 
-    return false;
+    return visitado !=nullptr;
 }
+
+//***********************************
 
 template <typename T>
 int ListaDoble<T>::BuscarPosicion(T valor) const
 {
     Elemento *visitado = primero;
 
-    for (int i = 0; i < numElem; i++){
-        if (visitado->valor == valor){
-            return i;
-        }
+    int pos = 0;
+
+    while (visitado != nullptr && visitado->valor != valor){
         visitado = visitado->siguiente;
+        ++pos;
     }
-    return -1;
+
+    return visitado != nullptr ? pos : -1;
 }
+
+//***********************************
 
 template <typename T>
 bool ListaDoble<T>::EstaVacia() const
@@ -231,35 +276,50 @@ bool ListaDoble<T>::EstaVacia() const
     return false;
 }
 
+//***********************************
+
 template <typename T>
 T ListaDoble<T>::ObtenerPrimero() const
 {
+    if (EstaVacia()) throw ListaVacia();
 
+    return primero->valor;
 }
+
+//***********************************
 
 template <typename T>
 T ListaDoble<T>::ObtenerUltimo() const
 {
-
+    if (EstaVacia()) throw ListaVacia();
+    return ultimo->valor;
 }
+
+//***********************************
 
 template <typename T>
 T ListaDoble<T>::ObtenerEnPos(int pos) const
 {
-
+    return (*this)[pos];
 }
+
+//***********************************
 
 template <typename T>
 void ListaDoble<T>::ModificarEnPos(T valor, int pos)
 {
-
+    (*this)[pos] = valor;
 }
+
+//***********************************
 
 template <typename T>
 int ListaDoble<T>::ObtenerNumElem() const
 {
-
+    return numElem;
 }
+
+//***********************************
 
 template <typename T>
 void ListaDoble<T>::Vaciar()
@@ -268,6 +328,8 @@ void ListaDoble<T>::Vaciar()
         EliminarInicio();
     }
 }
+
+//***********************************
 
 template <typename T>
 void ListaDoble<T>::Imprimir() const
@@ -288,11 +350,92 @@ void ListaDoble<T>::Imprimir() const
     if(!EstaVacia()) std::cout << "\b\b ]";
 }
 
+//***********************************
+
 template <typename T>
 void ListaDoble<T>::ImprimirReversa() const
 {
+    if(EstaVacia()){
+        std::cout << "[ ]" << std::endl;
+        return;
+    }
 
+    Elemento *visitado = ultimo;
+    std::cout << "[ ";
+
+    while(visitado != nullptr){
+        std::cout << visitado->valor << ", ";
+        visitado = visitado->anterior;
+    }
+
+    if(!EstaVacia()) std::cout << "\b\b ]";
 }
+
+//***********************************
+// OPERADORES SOBRECARGADOS
+//***********************************
+
+template <typename T>
+std::ostream& operator<<(std::ostream& salida, const ListaDoble<T>& lista)
+{
+    lista.Imprimir();
+    return salida;
+}
+
+
+
+template <typename T>
+T &ListaDoble<T>::operator[](int pos)
+{
+    if(pos < 0 || pos >= numElem) throw ListaIndice();
+
+    Elemento *visitado;
+
+    if (pos > numElem / 2) {
+        visitado = ultimo;
+        for (int i = numElem - 1; i > pos; --i) {
+            visitado = visitado->anterior;
+        }
+    }else {
+        visitado = primero;
+        for (int i = 0; i < pos; ++i) {
+            visitado = visitado->siguiente;
+        }
+    }
+
+    return visitado->valor;
+}
+
+template <typename T>
+T ListaDoble<T>::operator[](int pos) const
+{
+    if (pos < 0 || pos >= numElem) throw ListaIndice();
+    if (EstaVacia()) throw ListaVacia();
+
+    if (pos == 0) {
+        return ObtenerPrimero();
+    }
+    if (pos == numElem-1) {
+        return ObtenerUltimo();
+    }
+
+    Elemento *visitado;
+
+    if (pos > numElem / 2){
+        visitado = ultimo;
+        for (int i = numElem - 1; i > pos; i--){
+            visitado = visitado->anterior;
+        }
+    }else{
+        visitado = primero;
+        for (int i = 0; i < pos; i++){
+            visitado = visitado->siguiente;
+        }
+    }
+
+    return visitado->valor;
+}
+
 
 //***********************************
 // Constructor de Elemento
@@ -302,7 +445,7 @@ template <typename T>
 ListaDoble<T>::Elemento::Elemento(T v, Elemento *ant /*=nullptr*/, Elemento *sig /*=nullptr*/) : valor(v), anterior(ant), siguiente(sig) {}
 
 //***********************************
-// Implementación de la clase ListaVacia
+// Implementaciï¿½n de las clases excepciones
 //***********************************
 
 template <typename T>

@@ -8,26 +8,27 @@ int main()
 {
     cout << "Prueba" << endl;
 
-    ListaDoble<int> listita;
+    try{
+        ListaDoble<int> listita;
 
-    listita.AgregarInicio(1);
-    listita.Imprimir();
-    cout << endl;
-    listita.AgregarInicio(2);
-    listita.Imprimir();
-    cout << endl;
-    listita.AgregarInicio(3);
-    listita.Imprimir();
-    cout << endl;
-    listita.AgregarEnPos(5, 2);
-    listita.Imprimir();
-    cout << endl << "busqueda\n6: " << endl;
-    cout << listita.BuscarValor(6);
-    cout << endl << "busqueda\n3: " << endl;
-    cout << listita.BuscarValor(3);
-    cout << "ELIMINANDO EN POS 0" << endl;
-    listita.EliminarEnPos(0);
-    listita.Imprimir();
+        cout << "Agregando elementos..." << endl;
 
+        for (int i = 0 ; i < 10 ; ++i) {
+            listita.AgregarFinal(i);
+            cout << listita << endl;
+        }
+
+        cout << "Modificando elementos con operator[]..." << endl;
+        listita[2] = 67;
+        cout << listita << endl;
+
+    }catch(const char* mensaje){
+        cerr << "Error: " << mensaje << endl;
+    }catch(const exception &error){
+        cerr << "Error: " << error.what();
+    }catch(...){
+        cerr << "El programa tuvo un error inesperado." << endl;
+    }
+    system("pause");
     return 0;
 }

@@ -47,6 +47,10 @@ public:
 
     void ImprimirReversa() const;
 
+    T &operator[](int pos); //devuelve una referencia, no debe ser constante
+
+    T operator[](int pos) const; //devuelve valor, debe ser constante
+
 
     /**
      * \brief Descripci&oacute;n de la clase/struct: Excepci&oacute;n lanzada cuando se intenta acceder o extraer de una cola vac&iacute;a.
