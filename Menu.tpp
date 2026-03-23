@@ -115,11 +115,12 @@ void MenuDefinirLista(Lista<T> &lista)
         }catch(const char* mensaje){
             cerr << "Error: " << mensaje << endl;
         }catch(const std::exception &error){
-            cerr << "Error: " << error.what();
+            cerr << "Error: " << error.what() << endl;
         }catch(...){
             cerr << "El programa tuvo un error inesperado." << endl;
         }
 
+        cout << endl;
         system("pause");
         system("CLS");
     }while(opcion != SalirMenu);

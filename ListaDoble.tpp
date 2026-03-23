@@ -335,7 +335,7 @@ template <typename T>
 void Lista<T>::Imprimir() const
 {
     if(EstaVacia()){
-        std::cout << "[ ]" << std::endl;
+        std::cout << "[ ]";
         return;
     }
 

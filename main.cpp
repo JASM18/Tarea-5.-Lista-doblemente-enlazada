@@ -43,7 +43,7 @@ int main()
         }catch(const char* mensaje){
             cerr << "Error: " << mensaje << endl;
         }catch(const exception &error){
-            cerr << "Error: " << error.what();
+            cerr << "Error: " << error.what() << endl;
         }catch(...){
             cerr << "El programa tuvo un error inesperado." << endl;
         }
