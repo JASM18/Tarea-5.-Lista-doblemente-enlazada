@@ -16,7 +16,16 @@ void MenuDefinirLista(Lista<T> &lista)
     int pos = 0;
     T valor;
 
+    lista.AgregarFinal(5);
+    lista.AgregarFinal(7);
+    lista.AgregarFinal(8);
+    lista.AgregarFinal(5);
+    lista.AgregarFinal(5);
+    lista.AgregarFinal(7);
+    lista.AgregarFinal(5);
+
     do {
+
         system("CLS");
 
         cout << "==============================" << endl;
@@ -30,8 +39,9 @@ void MenuDefinirLista(Lista<T> &lista)
         cout << "\t" << AgregarFinal << ") Agregar un elemento al final." << endl;
         cout << "\t" << AgregarEnPos << ") Agregar un elemento en una posici\242n." << endl;
         cout << "\t" << EliminarInicio << ") Eliminar el primer elemento." << endl;
-        cout << "\t" << EliminarFinal << ") Eliminar el \250ltimo elemento." << endl;
+        cout << "\t" << EliminarFinal << ") Eliminar el \243ltimo elemento." << endl;
         cout << "\t" << EliminarEnPos << ") Eliminar un elemento en una posici\242n." << endl;
+        cout << "\t" << EliminarOcurrencias << ") Eliminar todas las ocurrencias de un valor." << endl;
         cout << "\t" << ModificarValor << ") Modificar el valor de un elemento en una posici\242n." << endl;
         cout << "\t" << Vaciar << ") Vaciar la lista." << endl;
         cout << "\t" << SalirMenu << ") Regresar al men\243 principal." << endl;
@@ -83,6 +93,14 @@ void MenuDefinirLista(Lista<T> &lista)
                     valor = lista.ObtenerEnPos(pos);
                     lista.EliminarEnPos(pos);
                     cout << "[EXITO] Valor eliminado: " << valor << " en posici\242n " << pos << endl;
+
+                break;
+
+                case EliminarOcurrencias:
+
+                    CapturarNumero(valor, "Valor a eliminar: ");
+                    lista.EliminarOcurrencias(valor);
+                    cout << "[EXITO] Valor eliminado: " << valor << " en las posiciones " << endl;
 
                 break;
 
@@ -181,7 +199,7 @@ void MenuConocer(Lista<T> &lista)
                 break;
 
                 case SiEstaVacia:
-                    cout << "La lista " << (lista.EstaVacia() ? "est\241 vac\241a." : "no est\241 vac\241a.") << endl;
+                    cout << "La lista " << (lista.EstaVacia() ? "est\240 vac\241a." : "no est\240 vac\241a.") << endl;
                 break;
 
                 case PrimerElemento:
@@ -189,7 +207,7 @@ void MenuConocer(Lista<T> &lista)
                 break;
 
                 case UltimoElemento:
-                    cout << "El último elemento de la lista es: " << lista.ObtenerUltimo() << endl;
+                    cout << "El \243ltimo elemento de la lista es: " << lista.ObtenerUltimo() << endl;
                 break;
 
                 case CualquierElemento:

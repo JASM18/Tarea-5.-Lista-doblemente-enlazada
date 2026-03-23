@@ -5,9 +5,11 @@
 	"Menu.hpp"
 	"CapturaSegura.hpp"
 
-1774166088 source:e:\github\tarea 5 - listas doblemenente enlazadas\tarea-5.-lista-doblemente-enlazada\main.cpp
+1774295700 source:e:\github\tarea 5 - listas doblemenente enlazadas\tarea-5.-lista-doblemente-enlazada\main.cpp
 	<iostream>
 	"ListaDoble.hpp"
+	"Menu.hpp"
+	"CapturaSegura.hpp"
 
 1774209985 c:\users\axel\desktop\4to semestre\estructura de datos\tareas\tarea 5 - lista doblemente enlazada\listadoble.hpp
 	"ListaDoble.tpp"
@@ -15,10 +17,10 @@
 1774284891 c:\users\axel\desktop\4to semestre\estructura de datos\tareas\tarea 5 - lista doblemente enlazada\listadoble.tpp
 	<iostream>
 
-1774163749 e:\github\tarea 5 - listas doblemenente enlazadas\tarea-5.-lista-doblemente-enlazada\listadoble.hpp
+1774298500 e:\github\tarea 5 - listas doblemenente enlazadas\tarea-5.-lista-doblemente-enlazada\listadoble.hpp
 	"ListaDoble.tpp"
 
-1774167911 e:\github\tarea 5 - listas doblemenente enlazadas\tarea-5.-lista-doblemente-enlazada\listadoble.tpp
+1774304469 e:\github\tarea 5 - listas doblemenente enlazadas\tarea-5.-lista-doblemente-enlazada\listadoble.tpp
 	<iostream>
 
 1774284891 c:\users\axel\desktop\4to semestre\estructura de datos\tareas\tarea 5 - lista doblemente enlazada\menu.hpp
@@ -35,6 +37,23 @@
 	"CapturaSegura.tpp"
 
 1774284891 c:\users\axel\desktop\4to semestre\estructura de datos\tareas\tarea 5 - lista doblemente enlazada\capturasegura.tpp
+	<iostream>
+	<limits>
+
+1774299349 e:\github\tarea 5 - listas doblemenente enlazadas\tarea-5.-lista-doblemente-enlazada\menu.hpp
+	"ListaDoble.hpp"
+	"Menu.tpp"
+
+1774303592 e:\github\tarea 5 - listas doblemenente enlazadas\tarea-5.-lista-doblemente-enlazada\menu.tpp
+	<iostream>
+	<exception>
+	"Menu.hpp"
+	"CapturaSegura.hpp"
+
+1774284564 e:\github\tarea 5 - listas doblemenente enlazadas\tarea-5.-lista-doblemente-enlazada\capturasegura.hpp
+	"CapturaSegura.tpp"
+
+1774284564 e:\github\tarea 5 - listas doblemenente enlazadas\tarea-5.-lista-doblemente-enlazada\capturasegura.tpp
 	<iostream>
 	<limits>
 

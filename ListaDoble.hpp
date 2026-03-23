@@ -25,6 +25,8 @@ public:
 
     void EliminarEnPos(int pos);
 
+    void EliminarOcurrencias(T valor);
+
     bool BuscarValor(T valor) const;
 
     int BuscarPosicion(T valor) const;

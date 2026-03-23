@@ -235,6 +235,30 @@ void Lista<T>::EliminarEnPos(int pos)
 }
 
 //***********************************
+template <typename T>
+void Lista<T>::EliminarOcurrencias(T valor)
+{
+    if (EstaVacia()) throw ListaVacia();
+
+    //checar cada valor de cada elemento
+    //si el valor es igual al T valor entonces, eliminar el elemento.
+    Elemento *visitado = primero;
+    int indice = 0;
+
+    while(visitado != nullptr){
+
+
+        if (visitado->valor == valor){
+            (*this).EliminarEnPos(indice);
+            --indice;
+        }
+
+        visitado = visitado->siguiente;
+        ++indice;
+    }
+}
+
+//***********************************
 
 template <typename T>
 bool Lista<T>::BuscarValor(T valor) const
@@ -468,7 +492,7 @@ Lista<T>::ListaIndice::ListaIndice() throw(){}
 template <typename T>
 const char *Lista<T>::ListaVacia::what() const throw()
 {
-    return "La Lista se encuentra vac\241a.";
+    return "La lista se encuentra vac\241a.";
 }
 
 //***********************************
@@ -484,5 +508,5 @@ const char *Lista<T>::ListaNoMemoria::what() const throw()
 template <typename T>
 const char *Lista<T>::ListaIndice::what() const throw()
 {
-    return "Indice fuera de rango.";
+    return "\326ndice fuera de rango.";
 }

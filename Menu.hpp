@@ -10,6 +10,7 @@ enum OpsModificar {
     EliminarInicio,
     EliminarFinal,
     EliminarEnPos,
+    EliminarOcurrencias,
     ModificarValor,
     Vaciar,
     SalirMenu
