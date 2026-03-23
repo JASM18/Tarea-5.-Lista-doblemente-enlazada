@@ -8,6 +8,8 @@ using namespace std;
 
 enum Opciones_principales {
     MODIFICARLISTA = 1,
+    CONOCER,
+    OPERATOR,
     SALIR,
 };
 
@@ -21,10 +23,12 @@ int main()
         cout << "Tarea 5. Lista doblemente enlazada" << endl;
         cout << "==============================" << endl << endl;
 
-        cout << "Lista: " << lista << endl;
+        cout << "Lista: " << lista << endl << endl;
 
         cout << "Opciones:" << endl;
         cout << "\t" << MODIFICARLISTA << ") Modifica una lista. (Agregar, eliminar, modificar, vaciar)" << endl;
+        cout << "\t" << CONOCER << ") Conoce datos de la lista (Buscar, obtener, imprimir)" << endl;
+        cout << "\t" << OPERATOR << ") Probar la sobrecarga operator[]" << endl;
         cout << "\t" << SALIR << ") Salir del programa." << endl;
 
         do{
@@ -38,6 +42,14 @@ int main()
 
                 case MODIFICARLISTA :
                     MenuDefinirLista(lista);
+                break;
+
+                case CONOCER :
+                    MenuConocer(lista);
+                break;
+
+                case OPERATOR:
+                    MenuOperator(lista);
                 break;
             }
         }catch(const char* mensaje){

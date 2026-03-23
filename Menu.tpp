@@ -6,19 +6,8 @@
 
 using std::cout;
 using std::endl;
+using std::cin;
 using std::cerr;
-
-enum OpcionesModificar {
-    AgregarInicio = 1,
-    AgregarFinal,
-    AgregarEnPos,
-    EliminarInicio,
-    EliminarFinal,
-    EliminarEnPos,
-    ModificarValor,
-    Vaciar,
-    SalirMenu
-};
 
 template <typename T>
 void MenuDefinirLista(Lista<T> &lista)
@@ -34,7 +23,7 @@ void MenuDefinirLista(Lista<T> &lista)
         cout << "DEFINIENDO LA LISTA..." << endl;
         cout << "==============================" << endl << endl;
 
-        cout << "Lista: " << lista << endl;
+        cout << "Lista: " << lista << endl << endl;
 
         cout << "Opciones:" << endl;
         cout << "\t" << AgregarInicio << ") Agregar un elemento al inicio." << endl;
@@ -51,7 +40,7 @@ void MenuDefinirLista(Lista<T> &lista)
             CapturarNumero(opcion, "Elige una opci\242n: ");
         }while(opcion > SalirMenu || opcion < AgregarInicio);
 
-        cout << endl;
+        cout << "\n- - - - -" << endl << endl;
 
         if(opcion == SalirMenu) continue;
 
@@ -124,5 +113,144 @@ void MenuDefinirLista(Lista<T> &lista)
         system("pause");
         system("CLS");
     }while(opcion != SalirMenu);
+
+}
+
+template<typename T>
+void MenuConocer(Lista<T> &lista)
+{
+    int opcion = -1;
+    int pos = 0;
+    T valor;
+
+    do {
+        system("CLS");
+
+        cout << "==============================" << endl;
+        cout << "CONOCIENDO DATOS DE LA LISTA..." << endl;
+        cout << "==============================" << endl << endl;
+
+        cout << "Lista: " << lista << endl << endl;
+
+        cout << "Opciones:" << endl;
+        cout << "\t" << BuscarValor << ") Buscar un valor en la lista." << endl;
+        cout << "\t" << BuscarPosicion << ") Buscar la posici\242n de un valor en la lista (primera ocurrencia)." << endl;
+        cout << "\t" << SiEstaVacia << ") Conocer si la lista está vacía." << endl;
+        cout << "\t" << PrimerElemento << ") Obtener el primer elemento de la lista." << endl;
+        cout << "\t" << UltimoElemento << ") Obtener el último elemento de la lisa." << endl;
+        cout << "\t" << CualquierElemento << ") Obtener el elemento de la lista en cierta posición (o índice)" << endl;
+        cout << "\t" << NumeroElementos << ") Obtener el número de elementos que contiene la lista." << endl;
+        cout << "\t" << ImprimirLista << ") Imprimir la lista." << endl;
+        cout << "\t" << ImprimirReversa << ") Imprimir la lista en reversa." << endl;
+        cout << "\t" << SalirMenuConocer << ") Regresar al men\243 principal." << endl;
+
+        do{
+            CapturarNumero(opcion, "Elige una opci\242n: ");
+        }while(opcion > SalirMenuConocer || opcion < BuscarValor);
+
+        cout << "\n- - - - -" << endl << endl;
+
+        if(opcion == SalirMenuConocer) continue;
+
+        try {
+
+            switch (opcion){
+                case BuscarValor:
+                    cout << "Valor a buscar: ";
+                    cin >> valor;
+
+                    cout << endl;
+                    cout << "El valor " << valor << " esta en la lista: " << (lista.BuscarValor(valor) ? "True" : "False") << endl;
+
+                break;
+
+                case BuscarPosicion:
+
+                    cout << "Valor a buscar para obtener su posicion: ";
+                    cin >> valor;
+
+                    pos = lista.BuscarPosicion(valor);
+
+                    cout << endl;
+                    if(pos != -1){
+                        cout << "El valor " << valor << " se encuentra en la posici\242n: " << pos << endl;
+                    }else{
+                        cout << "El valor " << valor << " no se encuentra en la lista." << endl;
+                    }
+
+                break;
+
+                case SiEstaVacia:
+                    cout << "La lista " << (lista.EstaVacia() ? "est\241 vac\241a." : "no est\241 vac\241a.") << endl;
+                break;
+
+                case PrimerElemento:
+                        cout << "El primer elemento de la lista es: " << lista.ObtenerPrimero() << endl;
+                break;
+
+                case UltimoElemento:
+                    cout << "El último elemento de la lista es: " << lista.ObtenerUltimo() << endl;
+                break;
+
+                case CualquierElemento:
+                    CapturarNumero(pos, "Posici\242n del elemento a obtener: ");
+                    cout << "El elemento en la posici\242n " << pos << " es: " << lista.ObtenerEnPos(pos) << endl;
+                break;
+
+                case NumeroElementos:
+                    cout << "La lista contiene " << lista.ObtenerNumElem() << " elementos." << endl;
+                break;
+
+                case ImprimirLista:
+                    cout << "La lista es: " << lista << endl;
+                break;
+
+                case ImprimirReversa:
+                    cout << "La lista en reversa es: ";
+                        lista.ImprimirReversa();
+                    cout << endl;
+                break;
+            }
+
+        }catch(const char* mensaje){
+            cerr << "Error: " << mensaje << endl;
+        }catch(const std::exception &error){
+            cerr << "Error: " << error.what() << endl;
+        }catch(...){
+            cerr << "El programa tuvo un error inesperado." << endl;
+        }
+
+        cout << endl;
+        system("pause");
+        system("CLS");
+    }while(opcion != SalirMenuConocer);
+}
+
+template <typename T>
+void MenuOperator(Lista<T> &lista)
+{
+    system("CLS");
+
+    cout << "==============================" << endl;
+    cout << "Probando la sobrecarga operator[]" << endl;
+    cout << "==============================" << endl << endl;
+
+    cout << "-> Se va a definir una nueva lista para ponerlo a prueba." << endl;
+
+    Lista<int> listita;
+
+    for (int i = 0 ; i < 10 ; ++i) {
+        listita.AgregarFinal(i);
+    }
+
+    cout << "\nLa lista es: " << listita << endl;
+
+    cout << "\n-> Se va intercambiar el " << listita[5] << " por un 99." << endl;
+
+    listita[5] = 99;
+
+    cout << "listita[5]: " << listita[5] << endl;
+
+    cout << "\nLa lista ahora es: " << listita << endl;
 
 }

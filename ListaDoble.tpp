@@ -382,7 +382,7 @@ std::ostream& operator<<(std::ostream& salida, const Lista<T>& lista)
     return salida;
 }
 
-
+//***********************************
 
 template <typename T>
 T &Lista<T>::operator[](int pos)
@@ -405,6 +405,8 @@ T &Lista<T>::operator[](int pos)
 
     return visitado->valor;
 }
+
+//***********************************
 
 template <typename T>
 T Lista<T>::operator[](int pos) const
