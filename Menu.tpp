@@ -22,7 +22,9 @@ void MenuDefinirLista(Lista<T> &lista)
 {
     int opcion =-1;
     int pos = 0;
+    int inicio, fin;
     T valor;
+    Lista<T> listaReceptora;
 
     lista.AgregarFinal(5);
     lista.AgregarFinal(7);
@@ -74,39 +76,39 @@ void MenuDefinirLista(Lista<T> &lista)
                 case AgregarInicio:
                     CapturarNumero(valor, "Valor a agregar al inicio: ");
                     lista.AgregarInicio(valor);
-                    cout << "[EXITO] Valor agregado al inicio: " << valor << endl;
+                    cout << "[\220XITO] Valor agregado al inicio: " << valor << endl;
                 break;
 
                 case AgregarFinal:
                     CapturarNumero(valor, "Valor a agregar al final: ");
                     lista.AgregarFinal(valor);
-                    cout << "[EXITO] Valor agregado al final: " << valor << endl;
+                    cout << "[\220XITO] Valor agregado al final: " << valor << endl;
                 break;
 
                 case AgregarEnPos:
                     CapturarNumero(valor, "Valor a agregar: ");
                     CapturarNumero(pos, "Posici\242n donde agregar: ");
                     lista.AgregarEnPos(valor, pos);
-                    cout << "[EXITO] Valor agregado: " << valor << " en posici\242n " << pos << endl;
+                    cout << "[\220XITO] Valor agregado: " << valor << " en posici\242n " << pos << endl;
                 break;
 
                 case EliminarInicio:
                     valor = lista.ObtenerPrimero();
                     lista.EliminarInicio();
-                    cout << "[EXITO] Valor eliminado del inicio: " << valor << endl;
+                    cout << "[\220XITO] Valor eliminado del inicio: " << valor << endl;
                 break;
 
                 case EliminarFinal:
                     valor = lista.ObtenerUltimo();
                     lista.EliminarFinal();
-                    cout << "[EXITO] Valor eliminado del final: " << valor << endl;
+                    cout << "[\220XITO] Valor eliminado del final: " << valor << endl;
                 break;
 
                 case EliminarEnPos:
                     CapturarNumero(pos, "Posici\242n a eliminar: ");
                     valor = lista.ObtenerEnPos(pos);
                     lista.EliminarEnPos(pos);
-                    cout << "[EXITO] Valor eliminado: " << valor << " en posici\242n " << pos << endl;
+                    cout << "[\220XITO] Valor eliminado: " << valor << " en posici\242n " << pos << endl;
 
                 break;
 
@@ -114,7 +116,7 @@ void MenuDefinirLista(Lista<T> &lista)
 
                     CapturarNumero(valor, "Valor a eliminar: ");
                     lista.EliminarOcurrencias(valor);
-                    cout << "[EXITO] Valor eliminado: " << valor << " en todas las posiciones. " << endl;
+                    cout << "[\220XITO] Valor eliminado: " << valor << " en todas las posiciones. " << endl;
 
                 break;
 
@@ -122,19 +124,18 @@ void MenuDefinirLista(Lista<T> &lista)
 
                     cout << "Para probar este m\202todo, se usar\240 la condici\242n de retornar solo valores mayores a 10." << endl;
                     lista.EliminarCondicion(CondicionPrueba<T>);
-                    "[EXITO] Elementos eliminados seg\243n la condici\242n." << endl;
+                    cout << "[\220XITO] Elementos eliminados seg\243n la condici\242n." << endl;
 
                 break;
 
                 case EliminarRepetidos:
 
                     lista.EliminarRepetidos();
-                    cout << "[EXITO] Todos los elementos repetidos fueron eliminados." << endl;
+                    cout << "[\220XITO] Todos los elementos repetidos fueron eliminados." << endl;
 
                 break;
 
-                case Intercambiar:
-
+                case Intercambiar: {
                     Lista<T> listaPrueba;
 
                     listaPrueba.AgregarFinal(99);
@@ -146,15 +147,11 @@ void MenuDefinirLista(Lista<T> &lista)
 
                     lista.Intercambiar(listaPrueba);
 
-                    cout << "\n[EXITO] Las listas fueron intercambiadas." << endl;
-
+                    cout << "\n[\220XITO] Las listas fueron intercambiadas." << endl;
+                }
                 break;
 
                 case TransferirRango:
-
-                    Lista<T> listaReceptora;
-
-                    int inicio, fin;
 
                     CapturarNumero(inicio, "\326ndice de inicio del corte: ");
                     CapturarNumero(fin, "\326ndice de fin del corte: ");
@@ -164,14 +161,9 @@ void MenuDefinirLista(Lista<T> &lista)
                     cout << "\n[\220XITO] Elementos transferidos." << endl;
                     cout << "Lista con los datos extra\241dos: " << listaReceptora << endl;
 
-                    break;
-
                 break;
 
                 case TransferirDesde:
-
-                    Lista<T> listaReceptora;
-                    int inicio;
 
                     CapturarNumero(inicio, "\326ndice desde donde empezar a cortar: ");
 
@@ -183,11 +175,9 @@ void MenuDefinirLista(Lista<T> &lista)
 
                 case TransferirTodos:
 
-                    Lista<T> listaReceptora;
-
                     lista.TransferirTodos(listaReceptora);
 
-                    cout << "\n[EXITO] Toda la lista fue transferida." << endl;
+                    cout << "\n[\220XITO] Toda la lista fue transferida." << endl;
                     cout << "La lista receptora se llen\242 con: " << listaReceptora << endl;
 
                 break;
@@ -198,12 +188,12 @@ void MenuDefinirLista(Lista<T> &lista)
 
                     lista.ModificarEnPos(valor, pos);
 
-                    cout << "[EXITO] Valor modificado: " << valor << " en posici\242n " << pos << endl;
+                    cout << "[\220XITO] Valor modificado: " << valor << " en posici\242n " << pos << endl;
                 break;
 
                 case Vaciar:
                     lista.Vaciar();
-                    cout << "[EXITO] Lista vaciada" << endl;
+                    cout << "[\220XITO] Lista vaciada" << endl;
                 break;
             }
 
