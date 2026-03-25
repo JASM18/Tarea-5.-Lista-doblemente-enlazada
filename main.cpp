@@ -19,15 +19,15 @@ int main()
     Lista<int> lista;
 
     do{
-        cout << "==============================" << endl;
+        cout << "==================================" << endl;
         cout << "Tarea 5. Lista doblemente enlazada" << endl;
-        cout << "==============================" << endl << endl;
+        cout << "==================================" << endl << endl;
 
         cout << "Lista: " << lista << endl << endl;
 
         cout << "Opciones:" << endl;
-        cout << "\t" << MODIFICARLISTA << ") Modifica una lista. (Agregar, eliminar, modificar, vaciar)" << endl;
-        cout << "\t" << CONOCER << ") Conoce datos de la lista (Buscar, obtener, imprimir)" << endl;
+        cout << "\t" << MODIFICARLISTA << ") Modificar una lista. (Agregar, eliminar, modificar, transferir, vaciar)" << endl;
+        cout << "\t" << CONOCER << ") Conocer datos de la lista (Buscar, obtener, imprimir)" << endl;
         cout << "\t" << OPERATOR << ") Probar la sobrecarga operator[]" << endl;
         cout << "\t" << SALIR << ") Salir del programa." << endl;
 

@@ -25,8 +25,6 @@ public:
 
     void EliminarEnPos(int pos);
 
-    void EliminarOcurrencias(T valor);
-
     bool BuscarValor(T valor) const;
 
     int BuscarPosicion(T valor) const;
@@ -53,6 +51,19 @@ public:
 
     T operator[](int pos) const; //devuelve valor, debe ser constante
 
+    void EliminarOcurrencias(T valor);
+
+    void EliminarCondicion(bool (*condicion)(T));
+
+    void EliminarRepetidos();
+
+    void Intercambiar(Lista<T>& otra);
+
+    void TransferirEnRango(Lista<T>& receptora, int posInicio, int posFin);
+
+    void TransferirDesde(Lista<T>& receptora, int posInicio);
+
+    void TransferirTodos(Lista<T>& receptora);
 
     /**
      * \brief Descripci&oacute;n de la clase/struct: Excepci&oacute;n lanzada cuando se intenta acceder o extraer de una cola vac&iacute;a.

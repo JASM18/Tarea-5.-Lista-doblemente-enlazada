@@ -9,6 +9,14 @@ using std::endl;
 using std::cin;
 using std::cerr;
 
+//Para poder usar la funcion EliminarCondicion
+template <typename T>
+bool CondicionPrueba(T valor)
+{
+    return valor > 10;
+}
+
+
 template <typename T>
 void MenuDefinirLista(Lista<T> &lista)
 {
@@ -42,6 +50,12 @@ void MenuDefinirLista(Lista<T> &lista)
         cout << "\t" << EliminarFinal << ") Eliminar el \243ltimo elemento." << endl;
         cout << "\t" << EliminarEnPos << ") Eliminar un elemento en una posici\242n." << endl;
         cout << "\t" << EliminarOcurrencias << ") Eliminar todas las ocurrencias de un valor." << endl;
+        cout << "\t" << EliminarCondicion << ") Eliminar valores seg\243n una funci\242n de condici\242n. " << endl;
+        cout << "\t" << EliminarRepetidos << ") Eliminar todos los valores repetidos." << endl;
+        cout << "\t" << Intercambiar << ") Intercambiar una lista con otra." << endl;
+        cout << "\t" << TransferirRango << ") Transferir elementos a otra lista siguiendo un rango. " << endl;
+        cout << "\t" << TransferirDesde << ") Transferir los elementos a otra lista desde cierta posici\242n." << endl;
+        cout << "\t" << TransferirTodos << ") Transferir todos los elementos a otra lista." << endl;
         cout << "\t" << ModificarValor << ") Modificar el valor de un elemento en una posici\242n." << endl;
         cout << "\t" << Vaciar << ") Vaciar la lista." << endl;
         cout << "\t" << SalirMenu << ") Regresar al men\243 principal." << endl;
@@ -100,7 +114,81 @@ void MenuDefinirLista(Lista<T> &lista)
 
                     CapturarNumero(valor, "Valor a eliminar: ");
                     lista.EliminarOcurrencias(valor);
-                    cout << "[EXITO] Valor eliminado: " << valor << " en las posiciones " << endl;
+                    cout << "[EXITO] Valor eliminado: " << valor << " en todas las posiciones. " << endl;
+
+                break;
+
+                case EliminarCondicion:
+
+                    cout << "Para probar este m\202todo, se usar\240 la condici\242n de retornar solo valores mayores a 10." << endl;
+                    lista.EliminarCondicion(CondicionPrueba<T>);
+                    "[EXITO] Elementos eliminados seg\243n la condici\242n." << endl;
+
+                break;
+
+                case EliminarRepetidos:
+
+                    lista.EliminarRepetidos();
+                    cout << "[EXITO] Todos los elementos repetidos fueron eliminados." << endl;
+
+                break;
+
+                case Intercambiar:
+
+                    Lista<T> listaPrueba;
+
+                    listaPrueba.AgregarFinal(99);
+                    listaPrueba.AgregarFinal(100);
+                    listaPrueba.AgregarFinal(101);
+
+                    cout << "Lista actual: " << lista << endl;
+                    cout << "Lista de prueba: " << listaPrueba << endl;
+
+                    lista.Intercambiar(listaPrueba);
+
+                    cout << "\n[EXITO] Las listas fueron intercambiadas." << endl;
+
+                break;
+
+                case TransferirRango:
+
+                    Lista<T> listaReceptora;
+
+                    int inicio, fin;
+
+                    CapturarNumero(inicio, "\326ndice de inicio del corte: ");
+                    CapturarNumero(fin, "\326ndice de fin del corte: ");
+
+                    lista.TransferirEnRango(listaReceptora, inicio, fin);
+
+                    cout << "\n[\220XITO] Elementos transferidos." << endl;
+                    cout << "Lista con los datos extra\241dos: " << listaReceptora << endl;
+
+                    break;
+
+                break;
+
+                case TransferirDesde:
+
+                    Lista<T> listaReceptora;
+                    int inicio;
+
+                    CapturarNumero(inicio, "\326ndice desde donde empezar a cortar: ");
+
+                    lista.TransferirDesde(listaReceptora, inicio);
+
+                    cout << "\n[\220XITO] Elementos transferidos hasta el final." << endl;
+
+                break;
+
+                case TransferirTodos:
+
+                    Lista<T> listaReceptora;
+
+                    lista.TransferirTodos(listaReceptora);
+
+                    cout << "\n[EXITO] Toda la lista fue transferida." << endl;
+                    cout << "La lista receptora se llen\242 con: " << listaReceptora << endl;
 
                 break;
 
@@ -153,11 +241,11 @@ void MenuConocer(Lista<T> &lista)
         cout << "Opciones:" << endl;
         cout << "\t" << BuscarValor << ") Buscar un valor en la lista." << endl;
         cout << "\t" << BuscarPosicion << ") Buscar la posici\242n de un valor en la lista (primera ocurrencia)." << endl;
-        cout << "\t" << SiEstaVacia << ") Conocer si la lista está vacía." << endl;
+        cout << "\t" << SiEstaVacia << ") Conocer si la lista está vac\241a." << endl;
         cout << "\t" << PrimerElemento << ") Obtener el primer elemento de la lista." << endl;
-        cout << "\t" << UltimoElemento << ") Obtener el último elemento de la lisa." << endl;
-        cout << "\t" << CualquierElemento << ") Obtener el elemento de la lista en cierta posición (o índice)" << endl;
-        cout << "\t" << NumeroElementos << ") Obtener el número de elementos que contiene la lista." << endl;
+        cout << "\t" << UltimoElemento << ") Obtener el \243ltimo elemento de la lisa." << endl;
+        cout << "\t" << CualquierElemento << ") Obtener el elemento de la lista en cierta posici\242n (o \241ndice)" << endl;
+        cout << "\t" << NumeroElementos << ") Obtener el n\243mero de elementos que contiene la lista." << endl;
         cout << "\t" << ImprimirLista << ") Imprimir la lista." << endl;
         cout << "\t" << ImprimirReversa << ") Imprimir la lista en reversa." << endl;
         cout << "\t" << SalirMenuConocer << ") Regresar al men\243 principal." << endl;
@@ -178,13 +266,13 @@ void MenuConocer(Lista<T> &lista)
                     cin >> valor;
 
                     cout << endl;
-                    cout << "El valor " << valor << " esta en la lista: " << (lista.BuscarValor(valor) ? "True" : "False") << endl;
+                    cout << "El valor " << valor << " est\240 en la lista: " << (lista.BuscarValor(valor) ? "True" : "False") << endl;
 
                 break;
 
                 case BuscarPosicion:
 
-                    cout << "Valor a buscar para obtener su posicion: ";
+                    cout << "Valor a buscar para obtener su posici\242n: ";
                     cin >> valor;
 
                     pos = lista.BuscarPosicion(valor);

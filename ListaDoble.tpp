@@ -235,30 +235,6 @@ void Lista<T>::EliminarEnPos(int pos)
 }
 
 //***********************************
-template <typename T>
-void Lista<T>::EliminarOcurrencias(T valor)
-{
-    if (EstaVacia()) throw ListaVacia();
-
-    //checar cada valor de cada elemento
-    //si el valor es igual al T valor entonces, eliminar el elemento.
-    Elemento *visitado = primero;
-    int indice = 0;
-
-    while(visitado != nullptr){
-
-
-        if (visitado->valor == valor){
-            (*this).EliminarEnPos(indice);
-            --indice;
-        }
-
-        visitado = visitado->siguiente;
-        ++indice;
-    }
-}
-
-//***********************************
 
 template <typename T>
 bool Lista<T>::BuscarValor(T valor) const
@@ -462,6 +438,193 @@ T Lista<T>::operator[](int pos) const
     return visitado->valor;
 }
 
+//***********************************
+template <typename T>
+void Lista<T>::EliminarOcurrencias(T valor)
+{
+    if (EstaVacia()) throw ListaVacia();
+
+    Elemento *visitado = primero;
+    int indice = 0;
+
+    while(visitado != nullptr){
+        Elemento *siguienteNodo = visitado->siguiente;
+
+        if (visitado->valor == valor){
+            (*this).EliminarEnPos(indice);
+            --indice;
+        }
+
+        visitado = siguienteNodo;
+        ++indice;
+    }
+}
+
+//***********************************
+template <typename T>
+void Lista<T>::EliminarCondicion(bool (*condicion)(T))
+{
+    if (EstaVacia()) throw ListaVacia();
+
+    Elemento *visitado = primero;
+
+    while (visitado != nullptr) {
+        Elemento *siguienteNodo = visitado->siguiente;
+
+        // Evaluamos la condición
+        if (condicion(visitado->valor)){
+
+            if (visitado == primero){
+                primero = visitado->siguiente;
+
+                if (primero != nullptr){
+                    primero->anterior = nullptr;
+                }else{
+                    ultimo = nullptr;
+                }
+
+            }else if (visitado == ultimo){
+                ultimo = visitado->anterior;
+
+                if (ultimo != nullptr){
+                    ultimo->siguiente = nullptr;
+                }else{
+                    primero = nullptr;
+                }
+
+            }else{
+                visitado->anterior->siguiente = visitado->siguiente;
+                visitado->siguiente->anterior = visitado->anterior;
+            }
+
+            delete visitado;
+            numElem--;
+        }
+
+        visitado = siguienteNodo;
+    }
+}
+
+//***********************************
+template <typename T>
+void Lista<T>::EliminarRepetidos()
+{
+    if (EstaVacia()) throw ListaVacia();
+
+    Elemento *visitado = primero;
+    int indice = 0;
+
+    while (visitado != nullptr){
+
+        Elemento *aux = visitado->siguiente;
+        int indiceAux = indice + 1;
+
+        while (aux != nullptr){
+            Elemento *siguienteAux = aux->siguiente;
+
+            if (aux->valor == visitado->valor){
+                (*this).EliminarEnPos(indiceAux);
+                --indiceAux;
+            }
+
+            aux = siguienteAux;
+            ++indiceAux;
+        }
+
+        visitado = visitado->siguiente;
+        ++indice;
+    }
+}
+
+//***********************************
+template <typename T>
+void Lista<T>::Intercambiar(Lista<T>& otra)
+{
+    Elemento *tempPrimero = primero;
+    primero = otra.primero;
+    otra.primero = tempPrimero;
+
+    Elemento *tempUltimo = ultimo;
+    ultimo = otra.ultimo;
+    otra.ultimo = tempUltimo;
+
+    int tempNum = numElem;
+    numElem = otra.numElem;
+    otra.numElem = tempNum;
+}
+
+//***********************************
+template <typename T>
+void Lista<T>::TransferirEnRango(Lista<T>& lista, int posInicio, int posFin)
+{
+    if (posInicio < 0 || posFin >= numElem || posInicio > posFin) throw ListaIndice();
+
+    if (this == &lista) return;
+
+    //Desconectamos el rango de la lista original
+
+    Elemento *Inicio = primero;
+
+    for (int i = 0; i < posInicio; ++i){
+        Inicio = Inicio->siguiente;
+    }
+
+    Elemento *Fin = Inicio;
+
+    for (int i = posInicio; i < posFin; ++i){
+        Fin = Fin->siguiente;
+    }
+
+    int cantTransf = posFin - posInicio + 1;
+
+    if (Inicio->anterior != nullptr){
+        Inicio->anterior->siguiente = Fin->siguiente;
+    }else{
+        primero =  Fin->siguiente;
+    }
+
+    if (Fin->siguiente != nullptr){
+        Fin->siguiente->anterior = Inicio->anterior;
+    }else{
+        ultimo = Inicio->anterior;
+    }
+
+    numElem -= cantTransf;
+
+    //Ahora conectamos con la lista receptora
+
+    Inicio->anterior = lista.ultimo;
+    Fin->siguiente = nullptr;
+
+    if (lista.EstaVacia()){
+        lista.primero = Inicio;
+    }else{
+        lista.ultimo->siguiente = Inicio;
+    }
+
+    lista.ultimo = Fin;
+    lista.numElem += cantTransf;
+}
+
+//***********************************
+
+template <typename T>
+void Lista<T>::TransferirDesde(Lista<T>& lista, int posInicio)
+{
+    if (EstaVacia()) throw ListaVacia();
+
+    TransferirEnRango(lista, posInicio, numElem - 1);
+}
+
+//***********************************
+
+template <typename T>
+void Lista<T>::TransferirTodos(Lista<T>& lista)
+{
+    if (EstaVacia()) throw ListaVacia();
+
+    TransferirEnRango(lista, 0, numElem - 1);
+}
 
 //***********************************
 // Constructor de Elemento

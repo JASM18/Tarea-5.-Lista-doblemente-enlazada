@@ -11,6 +11,12 @@ enum OpsModificar {
     EliminarFinal,
     EliminarEnPos,
     EliminarOcurrencias,
+    EliminarCondicion,
+    EliminarRepetidos,
+    Intercambiar,
+    TransferirRango,
+    TransferirDesde,
+    TransferirTodos,
     ModificarValor,
     Vaciar,
     SalirMenu
