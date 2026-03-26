@@ -1,3 +1,11 @@
+/**
+* \file ListaDoble.tpp
+* \brief Este archivo contiene la implementaci&oacute;n de los m&eacute;todos de la plantilla de clase Lista (lista doblemente enlazada).
+* \author S&aacute;nchez Montoy, Jes&uacute;s Axel
+* \author Portugal Arreola, Marian Bethsab&eacute;
+* \date 19/03/2026
+*/
+
 #include <iostream>
 
 //***********************************

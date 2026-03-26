@@ -1,3 +1,11 @@
+/**
+* \file Menu.tpp
+* \brief Este archivo contiene la implementaci&oacute;n de los submen&uacute;s y operaciones de prueba de la lista.
+* \author S&aacute;nchez Montoy, Jes&uacute;s Axel
+* \author Portugal Arreola, Marian Bethsab&eacute;
+* \date 19/03/2026
+*/
+
 #include <iostream>
 #include <exception>
 

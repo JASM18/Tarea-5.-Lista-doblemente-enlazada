@@ -5,7 +5,7 @@
 	"Menu.hpp"
 	"CapturaSegura.hpp"
 
-1774422124 source:e:\github\tarea 5 - listas doblemenente enlazadas\tarea-5.-lista-doblemente-enlazada\main.cpp
+1774489353 source:e:\github\tarea 5 - listas doblemenente enlazadas\tarea-5.-lista-doblemente-enlazada\main.cpp
 	<iostream>
 	"ListaDoble.hpp"
 	"Menu.hpp"
@@ -17,10 +17,10 @@
 1774284891 c:\users\axel\desktop\4to semestre\estructura de datos\tareas\tarea 5 - lista doblemente enlazada\listadoble.tpp
 	<iostream>
 
-1774385128 e:\github\tarea 5 - listas doblemenente enlazadas\tarea-5.-lista-doblemente-enlazada\listadoble.hpp
+1774489468 e:\github\tarea 5 - listas doblemenente enlazadas\tarea-5.-lista-doblemente-enlazada\listadoble.hpp
 	"ListaDoble.tpp"
 
-1774385247 e:\github\tarea 5 - listas doblemenente enlazadas\tarea-5.-lista-doblemente-enlazada\listadoble.tpp
+1774489354 e:\github\tarea 5 - listas doblemenente enlazadas\tarea-5.-lista-doblemente-enlazada\listadoble.tpp
 	<iostream>
 
 1774284891 c:\users\axel\desktop\4to semestre\estructura de datos\tareas\tarea 5 - lista doblemente enlazada\menu.hpp
@@ -40,11 +40,11 @@
 	<iostream>
 	<limits>
 
-1774410849 e:\github\tarea 5 - listas doblemenente enlazadas\tarea-5.-lista-doblemente-enlazada\menu.hpp
+1774489353 e:\github\tarea 5 - listas doblemenente enlazadas\tarea-5.-lista-doblemente-enlazada\menu.hpp
 	"ListaDoble.hpp"
 	"Menu.tpp"
 
-1774423889 e:\github\tarea 5 - listas doblemenente enlazadas\tarea-5.-lista-doblemente-enlazada\menu.tpp
+1774489353 e:\github\tarea 5 - listas doblemenente enlazadas\tarea-5.-lista-doblemente-enlazada\menu.tpp
 	<iostream>
 	<exception>
 	"Menu.hpp"

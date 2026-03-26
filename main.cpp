@@ -1,16 +1,26 @@
-#include <iostream>
+/**
+* \file main.cpp
+* \brief Este archivo contiene la ejecuci&oacute;n principal y el men&uacute; para probar la clase Lista (lista doblemente enlazada).
+* \author S&aacute;nchez Montoy, Jes&uacute;s Axel
+* \author Portugal Arreola, Marian Bethsab&eacute;
+* \date 19/03/2026
+*/
 
+#include <iostream>
 #include "ListaDoble.hpp"
 #include "Menu.hpp"
 #include  "CapturaSegura.hpp"
 
 using namespace std;
 
+/**
+ * \brief Opciones del men&uacute; principal.
+ */
 enum Opciones_principales {
-    MODIFICARLISTA = 1,
-    CONOCER,
-    OPERATOR,
-    SALIR,
+    MODIFICARLISTA = 1,     ///< Opci&oacute;n para ir al men&uacute; de modificaci&oacute;n.
+    CONOCER,                ///< Opci&oacute;n para ir al men&uacute; para conocer datos de la lista.
+    OPERATOR,               ///< Opci&oacute;n para probar la sobrecarga del operador de corchetes.
+    SALIR                   ///< Opci&oacute;n para salir del programa.
 };
 
 int main()
