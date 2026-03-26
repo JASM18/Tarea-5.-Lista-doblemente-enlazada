@@ -3,7 +3,7 @@
 * \brief Este archivo contiene la implementaci&oacute;n de los submen&uacute;s y operaciones de prueba de la lista.
 * \author S&aacute;nchez Montoy, Jes&uacute;s Axel
 * \author Portugal Arreola, Marian Bethsab&eacute;
-* \date 19/03/2026
+* \date 25/03/2026
 */
 
 #include <iostream>
@@ -24,6 +24,7 @@ bool CondicionPrueba(T valor)
     return valor > 10;
 }
 
+//**************************
 
 template <typename T>
 void MenuDefinirLista(Lista<T> &lista)
@@ -33,14 +34,6 @@ void MenuDefinirLista(Lista<T> &lista)
     int inicio, fin;
     T valor;
     Lista<T> listaReceptora;
-
-    lista.AgregarFinal(5);
-    lista.AgregarFinal(7);
-    lista.AgregarFinal(8);
-    lista.AgregarFinal(5);
-    lista.AgregarFinal(5);
-    lista.AgregarFinal(7);
-    lista.AgregarFinal(5);
 
     do {
 
