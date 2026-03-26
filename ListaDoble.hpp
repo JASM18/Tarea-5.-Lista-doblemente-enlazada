@@ -3,12 +3,101 @@
 * \brief Este archivo contiene la definici&oacute;n de la plantilla de clase Lista (lista doblemente enlazada).
 * \author S&aacute;nchez Montoy, Jes&uacute;s Axel
 * \author Portugal Arreola, Marian Bethsab&eacute;
-* \date 19/03/2026
+* \date 25/03/2026
 * \code{.cpp}
-* Lista<int> miLista;
-* miLista.AgregarFinal(10);
-* miLista.AgregarInicio(5);
-* std::cout << miLista[0] << std::endl;
+#include <iostream>
+#include "ListaDoble.hpp"
+
+using namespace std;
+
+// Función auxiliar para probar EliminarCondicion
+bool esMultiploDe3(int valor) {
+    return valor % 3 == 0;
+}
+
+int main() {
+
+    try {
+        Lista<int> miLista;
+
+        miLista.AgregarFinal(10);
+        miLista.AgregarFinal(20);
+        miLista.AgregarInicio(5);
+        miLista.AgregarEnPos(15, 2); // Inserta el 15 en el índice 2
+
+        cout << "Lista despues de agregar elementos: " << miLista << endl;
+        cout << "Total de elementos: " << miLista.ObtenerNumElem() << "\n\n";
+
+        cout << "Primer elemento: " << miLista.ObtenerPrimero() << endl;
+        cout << "Ultimo elemento: " << miLista.ObtenerUltimo() << "\n" << endl;
+
+        cout << "Modificando el indice 2 (15 -> 99)...\n";
+        miLista[2] = 99; // Usando el operador lvalue
+
+        cout << "El valor en el indice 2 ahora es: " << miLista[2] << "\n"; // Usando operador rvalue
+        cout << "Lista actual: " << miLista << endl;
+
+        int buscar = 20;
+        if (miLista.BuscarValor(buscar)) {
+            cout << "\nEl valor " << buscar << " SI esta en la lista, en la posicion: " << miLista.BuscarPosicion(buscar) << "\n" << endl;
+        }
+
+        miLista.EliminarInicio();
+        miLista.EliminarFinal();
+        cout << "Lista tras borrar inicio y final: " << miLista << "\n" << endl; // Esperado: [ 10, 99 ]
+
+        miLista.AgregarFinal(7);
+        miLista.AgregarFinal(7);
+        miLista.AgregarFinal(30); // Multiplo de 3
+        miLista.AgregarFinal(7);
+        miLista.AgregarFinal(9);  // Multiplo de 3
+
+        cout << "Lista preparada para limpiar: " << miLista << endl;
+
+        miLista.EliminarRepetidos();
+        cout << "Tras EliminarRepetidos: " << miLista << endl;
+
+        miLista.EliminarOcurrencias(7);
+        cout << "Tras EliminarOcurrencias(7): " << miLista << endl;
+
+        miLista.EliminarCondicion(esMultiploDe3);
+        cout << "Tras Eliminar multiplos de 3: " << miLista << endl;
+
+        Lista<int> listaReceptora;
+        listaReceptora.AgregarFinal(100);
+        listaReceptora.AgregarFinal(200);
+
+        cout << endl;
+        cout << "Lista Original: " << miLista << endl;
+        cout << "Lista Receptora: " << listaReceptora << endl;
+
+        cout << "\nIntercambiando listas...\n";
+        miLista.Intercambiar(listaReceptora);
+        cout << "Lista Original: " << miLista << endl;
+        cout << "Lista Receptora: " << listaReceptora << endl;
+
+        cout << "\nTransfiriendo todos los elementos de la Receptora a la Original...\n";
+        listaReceptora.TransferirTodos(miLista);
+        cout << "Lista Original: " << miLista << endl;
+        cout << "Lista Receptora: " << listaReceptora << endl; // Debería estar vacía
+        cout << "\n";
+
+        cout << "Intentando acceder a un indice invalido (100)...\n";
+        int valorImposible = miLista.ObtenerEnPos(100);
+        cout << valorImposible;
+
+    }catch(const char* mensaje){
+        cerr << "Error: " << mensaje << endl;
+    }catch(const exception &error){
+        cerr << "Error: " << error.what() << endl;
+    }catch(...){
+        cerr << "El programa tuvo un error inesperado." << endl;
+    }
+
+
+    system("pause");
+    return 0;
+}
 * \endcode
 */
 

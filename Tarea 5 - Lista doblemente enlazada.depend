@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1774284891 source:c:\users\axel\desktop\4to semestre\estructura de datos\tareas\tarea 5 - lista doblemente enlazada\main.cpp
+1774493395 source:c:\users\axel\desktop\4to semestre\estructura de datos\tareas\tarea 5 - lista doblemente enlazada\main.cpp
 	<iostream>
 	"ListaDoble.hpp"
 	"Menu.hpp"
@@ -11,10 +11,12 @@
 	"Menu.hpp"
 	"CapturaSegura.hpp"
 
-1774209985 c:\users\axel\desktop\4to semestre\estructura de datos\tareas\tarea 5 - lista doblemente enlazada\listadoble.hpp
+1774493395 c:\users\axel\desktop\4to semestre\estructura de datos\tareas\tarea 5 - lista doblemente enlazada\listadoble.hpp
+	<iostream>
+	"ListaDoble.hpp"
 	"ListaDoble.tpp"
 
-1774284891 c:\users\axel\desktop\4to semestre\estructura de datos\tareas\tarea 5 - lista doblemente enlazada\listadoble.tpp
+1774493396 c:\users\axel\desktop\4to semestre\estructura de datos\tareas\tarea 5 - lista doblemente enlazada\listadoble.tpp
 	<iostream>
 
 1774489468 e:\github\tarea 5 - listas doblemenente enlazadas\tarea-5.-lista-doblemente-enlazada\listadoble.hpp
@@ -23,11 +25,11 @@
 1774489354 e:\github\tarea 5 - listas doblemenente enlazadas\tarea-5.-lista-doblemente-enlazada\listadoble.tpp
 	<iostream>
 
-1774284891 c:\users\axel\desktop\4to semestre\estructura de datos\tareas\tarea 5 - lista doblemente enlazada\menu.hpp
+1774490350 c:\users\axel\desktop\4to semestre\estructura de datos\tareas\tarea 5 - lista doblemente enlazada\menu.hpp
 	"ListaDoble.hpp"
 	"Menu.tpp"
 
-1774284891 c:\users\axel\desktop\4to semestre\estructura de datos\tareas\tarea 5 - lista doblemente enlazada\menu.tpp
+1774490350 c:\users\axel\desktop\4to semestre\estructura de datos\tareas\tarea 5 - lista doblemente enlazada\menu.tpp
 	<iostream>
 	<exception>
 	"Menu.hpp"
