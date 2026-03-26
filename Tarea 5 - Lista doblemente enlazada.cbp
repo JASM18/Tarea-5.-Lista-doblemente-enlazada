@@ -34,6 +34,8 @@
 		</Compiler>
 		<Unit filename="ListaDoble.hpp" />
 		<Unit filename="ListaDoble.tpp" />
+		<Unit filename="Menu.hpp" />
+		<Unit filename="Menu.tpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
